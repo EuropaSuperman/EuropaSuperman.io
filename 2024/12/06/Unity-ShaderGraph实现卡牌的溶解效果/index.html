@@ -199,7 +199,7 @@
 <p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/4.png" alt="图片"><br><br><br><br></p>
 <p>右键Create-&gt;Shader Graph-&gt;URP-&gt;Unlit Shader Graph</p>
 <p>创造一个ShaderGraph，这里命名为Dissolve，并用其创建一个material，命名为matDissolve。</p>
-<h6 id="溶解效果的原理"><a href="#溶解效果的原理" class="headerlink" title="溶解效果的原理"></a>溶解效果的原理</h6><p>溶解效果的实现原理其实是通过一个平滑的噪声来作为片元的alpha值（此处的alpha值并非透明度，而是一个参数），不同的片元会有不同的alpha值，而相邻片元的alpha值是平滑的。在外部定义一个0到1之间的溶解值，只要片元的alpha值高于这个值，就将其裁剪。这样的话只要平滑地修改溶解值，着色器就会平滑地裁剪掉相应的片元，于是就达到了溶解的效果。</p>
+<h6 id="溶解效果的原理"><a href="#溶解效果的原理" class="headerlink" title="溶解效果的原理"></a>溶解效果的原理</h6><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">溶解效果的实现原理其实是通过一个平滑的噪声来作为片元的alpha值（此处的alpha值并非透明度，而是一个参数）</span><br><span class="line">不同的片元会有不同的alpha值，而相邻片元的alpha值是平滑的。</span><br><span class="line">在外部定义一个0到1之间的溶解值，只要片元的alpha值高于这个值，就将其裁剪。</span><br><span class="line">这样的话只要平滑地修改溶解值，着色器就会平滑地裁剪掉相应的片元，于是就达到了溶解的效果。</span><br></pre></td></tr></table></figure>
 <hr>
 <p>首先进行主纹理的采样，创建一个主纹理外部变量，将其默认值设置为你想要的图片，经过采样节点后链接到片元着色器。</p>
 <p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/5.png" alt="图片"><br><br><br><br></p>
@@ -212,6 +212,7 @@
 <p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/8.png" alt="图片"><br><br><br><br></p>
 <p>于是，我们可以看到阶段性的成果<br><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/9.png" alt="图片"><br><br><br><br></p>
 <p>完整的Shader Graph如下<br><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/10.png" alt="图片"><br><br><br><br></p>
+<p>下一期我们会介绍如何实现泛光效果。</p>
 
   </article>
   <aside class="table-content" id="site-toc">
