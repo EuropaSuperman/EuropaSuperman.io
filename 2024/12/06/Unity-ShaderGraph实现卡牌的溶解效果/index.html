@@ -6,12 +6,12 @@
   <meta name="author" content="EuropaSuperman" />
   
   
-  <title>C#字符池——我们为什么要使用StringBuilder？ | Europa Superman &#39;s blog</title>
+  <title>Unity ShaderGraph实现发光溶解效果（一） | Europa Superman &#39;s blog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="学习总结,C#," />
+    <meta name="keywords" content="Hexo, Theme-AD" />
   
 
   
@@ -166,12 +166,8 @@
   <div class="passage">
   <div class="passage-meta">
     <span>
-      <i class="fa fa-calendar"></i>2024-12-03
+      <i class="fa fa-calendar"></i>2024-12-06
     </span>
-    
-      <span>
-        | <a href="/EuropaSuperman.io/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><i class="fa fa-bookmark"></i>学习总结</a>
-      </span>
     
     
       <span>
@@ -180,25 +176,38 @@
     
   </div>
   <h1 class="passage-title">
-    C#字符池——我们为什么要使用StringBuilder？
+    Unity ShaderGraph实现发光溶解效果（一）
   </h1>
   
   <article class="passage-article">
-    <h5 id="什么是字符池"><a href="#什么是字符池" class="headerlink" title="什么是字符池"></a>什么是字符池</h5><p>在程序启动后，CRL会维护一个哈希表，key是字符串，value是这个字符串对应的内存地址，找个哈希表就是字符池。</p>
-<p>当一个字符串被静态地创建后，首先查找字符池，如果没有结果，会将其插入字符池，如果查找成功，将该内存地址赋给对应的引用。</p>
-<p>代码1</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;string&gt; L = new List&lt;string&gt;();</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line">    L.Add(<span class="string">&quot;aaa&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>和代码2</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">List&lt;string&gt; L = new List&lt;string&gt;();</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</span><br><span class="line">&#123;</span><br><span class="line">    string s = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">    L.Add(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两段代码比起来，谁的效率更高？</p>
-<p>答案：代码2</p>
-<p>因为在代码1中，每次循环都会创建一个”aaa”对象，虽然这些对象的引用在调用栈中不断地被创建和销毁，但是它们实际上都是在托管堆中动态分配的，而不是通过字符池中的引用访问。</p>
-<p>代码2中第一次循环的时候创建了一个”aaa”对象，然后添加到了字符池当中，之后的每次添加，都将访问在字符池中该对象的引用，而不是重新创造一个对象，所以代码2的效率更高。</p>
-<p>结论：在进行大量的字符串访问操作的时候，最好使用静态创建对象的方式。如果需要频繁地进行字符串的拼接操作，应该使用StringBuilder。</p>
-<h5 id="关于对象的创建方式"><a href="#关于对象的创建方式" class="headerlink" title="关于对象的创建方式"></a>关于对象的创建方式</h5><p>C#中所有通过new一个对象的方式来创建对象，都是动态创建。</p>
-<p>静态创建对象通常是指使用静态构造函数、静态工厂方法等静态成员来创建对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//静态创建字符串</span><br><span class="line">string s = <span class="string">&quot;aaa&quot;</span>;</span><br><span class="line">//在编译时，字面量的字符串相加会被计算后合并，然后加入字符池</span><br><span class="line">string b = <span class="string">&quot;aaa&quot;</span> + <span class="string">&quot;bbb&quot;</span>;</span><br></pre></td></tr></table></figure>
-<p>这行代码是静态创建字符串对象。在 C# 中，使用字符串字面量（比如 “aaa”）创建的字符串对象会自动存储在字符串池中，如果池中已经有一个相同的字符串对象，则不会创建新的字符串对象，而是返回现有的字符串对象的引用。因此，这行代码实际上是在字符串池中查找或创建一个字符串对象，并将其引用赋值给变量 s。</p>
+    <p>Unity版本：2022.3.45fc1</p>
+<h3 id="第一步，创建一个2D的URP项目"><a href="#第一步，创建一个2D的URP项目" class="headerlink" title="第一步，创建一个2D的URP项目"></a>第一步，创建一个2D的URP项目</h3><p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/1.png" alt="图片"><br><br><br><br></p>
+<h3 id="第二步，Global-Volume"><a href="#第二步，Global-Volume" class="headerlink" title="第二步，Global Volume"></a>第二步，Global Volume</h3><p>辉光效果是一个后处理效果，为了实现它，需要创造一个全局体积（Global Volume）。</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/2.png" alt="图片"><br><br><br><br></p>
+<p>然后，在Global Volume的inspector面板new一个新的Volue Profile。</p>
+<p>添加Override，选择Post-processing（后处理），选择Bloom（辉光或者说泛光），并设置为All。</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/3.png" alt="图片"><br><br><br><br></p>
+<p>着重介绍前三个属性：</p>
+<p>Threshold是一个阈值，只有HDR颜色的强度超过这个阈值，才会对该部分进行后处理</p>
+<p>Intensity是强度，这个会影响到全局的泛光强度。</p>
+<p>Scatter是散射，影响的是泛光的发光范围。</p>
+<h3 id="第三步，创造Shader-Graph和用于演示的物体"><a href="#第三步，创造Shader-Graph和用于演示的物体" class="headerlink" title="第三步，创造Shader Graph和用于演示的物体"></a>第三步，创造Shader Graph和用于演示的物体</h3><p>创建了一个2DSprite物体，图片资源大家可以选择自己喜欢的。</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/4.png" alt="图片"><br><br><br><br></p>
+<p>右键Create-&gt;Shader Graph-&gt;URP-&gt;Unlit Shader Graph</p>
+<p>创造一个ShaderGraph，这里命名为Dissolve，并用其创建一个material，命名为matDissolve。</p>
+<h6 id="溶解效果的原理"><a href="#溶解效果的原理" class="headerlink" title="溶解效果的原理"></a>溶解效果的原理</h6><p>溶解效果的实现原理其实是通过一个平滑的噪声来作为片元的alpha值（此处的alpha值并非透明度，而是一个参数），不同的片元会有不同的alpha值，而相邻片元的alpha值是平滑的。在外部定义一个0到1之间的溶解值，只要片元的alpha值高于这个值，就将其裁剪。这样的话只要平滑地修改溶解值，着色器就会平滑地裁剪掉相应的片元，于是就达到了溶解的效果。</p>
+<hr>
+<p>首先进行主纹理的采样，创建一个主纹理外部变量，将其默认值设置为你想要的图片，经过采样节点后链接到片元着色器。</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/5.png" alt="图片"><br><br><br><br></p>
+<p>创建一个simple noise节点，为了减小噪声的变化速度，我们将scale设置为20</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/6.png" alt="图片"><br><br><br><br></p>
+<p>与此同时，在Graph Inspector界面中，将Surface Type设置为Opaque，并勾选Alpha Clipping</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/7.png" alt="图片"><br><br><br><br></p>
+<p>添加外部float变量:溶解值，为了方便起见，设置Mode为slider（滑动条），最大值和最小值分别设置为0和1，值得注意的是，Reference不能设置为中文，需要手动设置成英文。</p>
+<p>将溶解值链接到Alpha Clip Threshold上。</p>
+<p><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/8.png" alt="图片"><br><br><br><br></p>
+<p>于是，我们可以看到阶段性的成果<br><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/9.png" alt="图片"><br><br><br><br></p>
+<p>完整的Shader Graph如下<br><img src="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/10.png" alt="图片"><br><br><br><br></p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -207,7 +216,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AD%97%E7%AC%A6%E6%B1%A0"><span class="toc-text">什么是字符池</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="toc-text">关于对象的创建方式</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%8C%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA2D%E7%9A%84URP%E9%A1%B9%E7%9B%AE"><span class="toc-text">第一步，创建一个2D的URP项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%8CGlobal-Volume"><span class="toc-text">第二步，Global Volume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%8C%E5%88%9B%E9%80%A0Shader-Graph%E5%92%8C%E7%94%A8%E4%BA%8E%E6%BC%94%E7%A4%BA%E7%9A%84%E7%89%A9%E4%BD%93"><span class="toc-text">第三步，创造Shader Graph和用于演示的物体</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-text">溶解效果的原理</span></a></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -216,7 +225,7 @@
       
         <div>
           原文链接: 
-          <a href="" target="_blank">https://github.com/EuropaSuperman/EuropaSuperman.io.git/2024/12/03/StringPool/</a>
+          <a href="" target="_blank">https://github.com/EuropaSuperman/EuropaSuperman.io.git/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/</a>
         </div>
       
       <div>
@@ -224,12 +233,6 @@
       </div>
     </aside>
   
-  
-    <div class="passage-tags">
-     
-      <a href="/EuropaSuperman.io/tags/C/"><i class="fa fa-tags"></i>C#</a>
-    
-    </div>
   
 </div>
 
@@ -293,10 +296,10 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/EuropaSuperman.io/2024/12/03/StringPool/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
