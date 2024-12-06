@@ -1,279 +1,165 @@
-<!DOCTYPE html>
-<html>
-  
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="EuropaSuperman" />
-  
-  
-  <title>归档: 2024/12 | Europa Superman &#39;s blog</title>
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>十二月 2024 | Europa Superman 's blog</title><meta name="author" content="木卫二超人"><meta name="copyright" content="木卫二超人"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="随便写写">
+<meta property="og:type" content="website">
+<meta property="og:title" content="十二月 2024">
+<meta property="og:url" content="https://github.com/EuropaSuperman/EuropaSuperman.io.git/archives/2024/12/index.html">
+<meta property="og:site_name" content="Europa Superman &#39;s blog">
+<meta property="og:description" content="随便写写">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/EuropaSuperman/EuropaSuperman.io.git/img/Sensei.jpg">
+<meta property="article:author" content="木卫二超人">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/EuropaSuperman/EuropaSuperman.io.git/img/Sensei.jpg"><link rel="shortcut icon" href="/EuropaSuperman.io/img/favicon.png"><link rel="canonical" href="https://github.com/EuropaSuperman/EuropaSuperman.io.git/archives/2024/12/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/EuropaSuperman.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
 
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
 
-  
-    <meta name="keywords" content="Hexo, Theme-AD" />
-  
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
 
-  
-  <meta name="description" content="木卫二超人的博客">
-
-  
-
-  
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
-  
-
-  
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
-  
-
-  
-
-  
-
-  <script>
-  // theme-ad's config script
-  // it can be used in every script
-  
-  window.AD_CONFIG = {
-    leancloud: {"appid":"Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz","appkey":"WaR7nrzhliHj9aVwdQzkdlGd","comment":false,"count":true},
-    welcome: {"enable":true,"interval":30},
-    start_time: "2024-12-03",
-    passwords: ["efe07af7441da2b69c4a41e42e73be4db47f66010a56900788a458354a7373ec", ],
-    is_post: false,
-    lock: false,
-    author: "EuropaSuperman",
-    share: {"twitter":false,"facebook":false,"weibo":false,"qq":false,"wechat":false},
-    mathjax: true,
-    page_type: "",
-    root: "/EuropaSuperman.io/"
-  };
-</script>
-
-  
-<script src="/EuropaSuperman.io/vendor/sha256.min.js"></script>
-<script src="/EuropaSuperman.io/js/auth.js"></script>
-<script src="/EuropaSuperman.io/js/index.js"></script>
-<script src="/EuropaSuperman.io/vendor/qrcode.min.js"></script>
-
-
-  
-    <link rel="icon" href="/EuropaSuperman.io/images/favicon.ico">
-    <link rel="apple-touch-icon" href="/EuropaSuperman.io/images/touch-icon.png">
-  
-
-  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-  
-<link rel="stylesheet" href="/EuropaSuperman.io/css/index.css">
-<link rel="stylesheet" href="/EuropaSuperman.io/styles/components/highlight/highlight.css">
-
-
-  
-</head>
-  <body>
-    <header class="site-header">
-  <div class="site-header-brand">
+      const theme = saveToLocal.get('theme')
     
-      <span class="site-header-brand-title">
-        <a href="/EuropaSuperman.io/">EuropaSuperman</a>
-      </span>
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
     
-    
-      <span class="site-header-brand-motto"> | 安静写些东西</span>
-    
-  </div>
-  <div class="site-header-right">
-    <nav class="site-header-navigation">
       
-        <a href="/EuropaSuperman.io/" target="_self">首页</a>
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/EuropaSuperman.io/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '十二月 2024',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script></head><body><div class="page" id="body-wrap"><header class="not-home-page" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/EuropaSuperman.io/"><span class="site-name">Europa Superman 's blog</span></a></span><div id="menus"></div></nav><div id="page-site-info"><h1 id="site-title">十二月 2024</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 2</div><div class="article-sort"><div class="article-sort-item year">2024</div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-06T07:54:51.000Z" title="发表于 2024-12-06 15:54:51">2024-12-06</time></div><a class="article-sort-item-title" href="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/" title="Unity ShaderGraph实现发光溶解效果（一）">Unity ShaderGraph实现发光溶解效果（一）</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2024-12-03T09:48:22.000Z" title="发表于 2024-12-03 17:48:22">2024-12-03</time></div><a class="article-sort-item-title" href="/EuropaSuperman.io/2024/12/03/StringPool/" title="C#字符池——我们为什么要使用StringBuilder？">C#字符池——我们为什么要使用StringBuilder？</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/EuropaSuperman.io/img/Sensei.jpg" onerror="this.onerror=null;this.src='/EuropaSuperman.io/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">木卫二超人</div><div class="author-info-description">随便写写</div><div class="site-data"><a href="/EuropaSuperman.io/archives/"><div class="headline">文章</div><div class="length-num">2</div></a><a href="/EuropaSuperman.io/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/EuropaSuperman.io/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" href="https://github.com/EuropaSuperman"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/" title="Unity ShaderGraph实现发光溶解效果（一）">Unity ShaderGraph实现发光溶解效果（一）</a><time datetime="2024-12-06T07:54:51.000Z" title="发表于 2024-12-06 15:54:51">2024-12-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/EuropaSuperman.io/2024/12/03/StringPool/" title="C#字符池——我们为什么要使用StringBuilder？">C#字符池——我们为什么要使用StringBuilder？</a><time datetime="2024-12-03T09:48:22.000Z" title="发表于 2024-12-03 17:48:22">2024-12-03</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/EuropaSuperman.io/categories/%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/"><span class="card-category-list-name">学习总结</span><span class="card-category-list-count">2</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/EuropaSuperman.io/tags/Shader-Graph/" style="font-size: 1.1em; color: #999">Shader Graph</a> <a href="/EuropaSuperman.io/tags/Unity/" style="font-size: 1.1em; color: #999">Unity</a> <a href="/EuropaSuperman.io/tags/C/" style="font-size: 1.5em; color: #99a9bf">C#</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
       
-        <a href="/EuropaSuperman.io/archives/" target="_self">归档</a>
-      
-        <a href="/EuropaSuperman.io/tags/" target="_self">标签</a>
-      
-        <a href="/EuropaSuperman.io/categories/" target="_self">分类</a>
-      
-        <a href="/EuropaSuperman.io/friends/" target="_self">友链</a>
-      
-        <a href="/EuropaSuperman.io/about/" target="_self">关于</a>
-      
-    </nav>
-    <div class="site-header-btn">
-      
-        <a href="https://github.com/europasuperman/" target="_blank" id="site-github">
-          <i class="fa fa-github-alt"></i>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/EuropaSuperman.io/archives/2024/12/">
+          <span class="card-archive-list-date">十二月 2024</span>
+          <span class="card-archive-list-count">2</span>
         </a>
-      
-      <a href="javascript:void(0);" id="site-search">
-        <i class="fa fa-search"></i>
-      </a>
-      <a href="javascript:void(0);" id="site-nav-btn">
-        <i class="fa fa-ellipsis-v"></i>
-      </a>
-    </div>
-  </div>
-</header>
-<nav class="table-content" id="site-nav">
-  <div class="table-content-title">
-    <span>导航</span>
-  </div>
-  <div class="table-content-main">
-    <ol class="toc">
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/" target="_self">
-            首页
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/archives/" target="_self">
-            归档
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/tags/" target="_self">
-            标签
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/categories/" target="_self">
-            分类
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/friends/" target="_self">
-            友链
-          </a>
-        </li>
-      
-        <li class="toc-item">
-          <a href="/EuropaSuperman.io/about/" target="_self">
-            关于
-          </a>
-        </li>
-      
-    </ol>
-  </div>
-</nav>
-<div id="site-process"></div>
-    <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 2篇</h2>
-  
-    
-      <h3 class="timeline-subtitle">2024</h3>
-    
-    <div class="timeline-item">
-      <time>2024-12-06</time>
-      <a target="_self" href="/EuropaSuperman.io/2024/12/06/Unity-ShaderGraph%E5%AE%9E%E7%8E%B0%E5%8D%A1%E7%89%8C%E7%9A%84%E6%BA%B6%E8%A7%A3%E6%95%88%E6%9E%9C/">Unity ShaderGraph实现发光溶解效果（一）</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2024-12-03</time>
-      <a target="_self" href="/EuropaSuperman.io/2024/12/03/StringPool/">C#字符池——我们为什么要使用StringBuilder？</a>
-    </div>
-  
-</div>
-    </main>
-    
-    <div class="site-footer-wrapper">
-  <footer class="site-footer">
-    
-      
-        <div class="site-footer-col">
-          <h5 class="site-footer-title">博客推荐</h5>
-          
-            <span class="site-footer-item">
-              <a href="https://neroumu.moe" target="_blank">neroumu</a>
-            </span>
-          
-        </div>
-      
-    
-    <div class="site-footer-info">
-      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
-    </div>
-    
-      <div class="site-footer-info">
-        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
-      </div>
-    
-    
-      <div class="site-footer-info">
-        <i class="fa fa-at"></i> Email: europasuperman@foxmail.com
-      </div>
-    
-    <div class="site-footer-info">
-      <i class="fa fa-copyright"></i> 
-      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
-      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
-      All rights reserved.
-    </div>
-  </footer>
-</div>
-    <div id="site-layer" style="display:none;">
-  <div class="site-layer-content">
-    <div class="site-layer-header">
-      <span class="site-layer-header-title" id="site-layer-title"></span>
-      <i class="fa fa-close" id="site-layer-close"></i>
-    </div>
-    <div class="site-layer-body" id="site-layer-container">
-      <div class="site-layer-input" id="site-layer-search" style="display: none;">
-        <div class="site-layer-input-choose">
-          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
-        </div>
-        <input type="text">
-        <i class="fa fa-search"></i>
-      </div>
-      
-      <div id="site-layer-welcome" style="display:none;"></div>
-    </div>
-  </div>
-</div>
-    
-
-<div class="bottom-bar">
-  <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
-      <i class="fa fa-arrow-left"></i>
-    </a>
-    <a href="javascript:void(0);" data-enable="false">
-      <i class="fa fa-arrow-right"></i>
-    </a>
-  </div>
-  <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
-      <i class="fa fa-bars"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="site-toggle-share-btn">
-      <i class="fa fa-share-alt"></i>
-    </a>
-    
-    <a href="javascript:void(0);" id="back-top-btn">
-      <i class="fa fa-chevron-up"></i>
-    </a>
-  </div>
-</div>
-    <div id="share-btn">
-  
-  
-  
-  
-  
-</div>
-    
-
-
-
-
-
-    
-  </body>
-</html>
+      </li>
+    </ul></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2024 By 木卫二超人</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/EuropaSuperman.io/js/utils.js"></script><script src="/EuropaSuperman.io/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
